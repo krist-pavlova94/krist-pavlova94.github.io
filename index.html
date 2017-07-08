@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap.min.css">
+	<title>Расчет расходов интернет-магазина</title>
+	<style>
+		.h {
+			height: 600px;
+		}
+	</style>
+</head>
+<body>
+<div class="row" style="margin-top: 40px;">
+ <div class="col-xs-5 col-xs-offset-1">
+	<form class="form-horizontal" id="form1">
+	  <fieldset>
+	    <legend>Расходы</legend>
+	    <div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label">
+	     		Реклама
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" required min="1" class="form-control" style="display: inline; width: 30%;" id="Rl" placeholder="" value="4000">&nbsp;—&nbsp;<input type="number" required  min="1" class="form-control" style="display: inline; width: 30%;" id="Rr" placeholder="" value="16000"> руб
+	     	</div>
+		</div>
+		<div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label">
+	     		Аренда
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" min="1" required class="form-control" style="display: inline; width: 30%;" id="Al" placeholder="" value="2500">&nbsp;—&nbsp;<input type="number" required min="1" class="form-control" style="display: inline; width: 30%;" id="Ar" placeholder="" value="15000"> руб
+	     	</div>
+		</div>
+		<div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label">
+	     		Зарплата
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 30%;" id="Zl" placeholder="" value="26040">&nbsp;—&nbsp;<input type="number" required min="1" class="form-control" style="display: inline; width: 30%;" id="Zr" placeholder="" value="78120"> руб
+	     	</div>
+		</div>
+		<div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label">
+	     		Интернет
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 30%;" id="Il" placeholder="" value="450">&nbsp;—&nbsp;<input type="number" required required min="1" class="form-control" style="display: inline; width: 30%;" id="Ir" placeholder="" value="800"> руб
+	     	</div>
+		</div>
+		<div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label">
+	     		Сайт
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 30%;" id="Sl" placeholder="" value="250">&nbsp;—&nbsp;<input type="number" required min="1" class="form-control" style="display: inline; width: 30%;" id="Sr" placeholder="" value="1550"> руб
+	     	</div>
+		</div>
+		<div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label">
+	     		Телефон
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 30%;" id="Tl" placeholder="" value="0">&nbsp;—&nbsp;<input type="number" required min="1" class="form-control" style="display: inline; width: 30%;" id="Tr" placeholder="" value="500"> руб
+	     	</div>
+		</div>
+		<div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     		Количество товаров
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 30%;" id="count" placeholder="" value="100">
+	     	</div>
+		</div>
+		<div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     		Стоимость закупки
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" min="1" class="form-control" required  style="display: inline; width: 30%;" id="Pl" placeholder="" value="4000">&nbsp;—&nbsp;<input type="number" required  min="1" class="form-control" style="display: inline; width: 30%;" id="Pr" placeholder="" value="16000"> руб
+	     	</div>
+		</div>
+		<div class="form-group">
+	      <label class="col-md-3 control-label">Желаемая прибыль</label>
+	      <div class="col-md-9">
+	        <div class="radio">
+	          <label>
+	            <input type="radio" name="B" id="optionsRadios1" value="1" checked>
+	            небольшая
+	          </label>
+	        </div>
+	        <div class="radio">
+	          <label>
+	            <input type="radio" name="B" id="optionsRadios2" value="2">
+	            средняя
+	          </label>
+	        </div>	        
+	        <div class="radio">
+	          <label>
+	            <input type="radio" name="B" id="optionsRadios3" value="3">
+	            высокая
+	          </label>
+	        </div>	        
+	        <div class="radio">
+	          <label>
+	            <input type="radio" name="B" id="optionsRadios4" value="4">
+	            очень высокая
+	          </label>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-md-3 control-label">Ставка налога</label>
+	      <div class="col-md-9">
+	        <div class="radio">
+	          <label>
+	            <input type="radio" name="tax" id="tax1" value="1" checked>
+	            6%
+	          </label>
+	        </div>
+	        <div class="radio">
+	          <label>
+	            <input type="radio" name="tax" id="tax2" value="2">
+	            15%
+	          </label>
+	        </div>	       
+	      </div>
+	    </div>
+	    <div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label">
+	     		Доходы
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 60%;" id="D" placeholder="" value="75000"> руб
+	     	</div>
+		</div>
+		<div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     		Сумма уплаченных страховых взносов
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" min="1" class="form-control" required  style="display: inline; width: 60%;" id="U" placeholder="" value="1000"> руб
+	     	</div>
+		</div>
+		<div class="form-group">
+	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     		Удельный вес номенклатурной группы или модели
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="number" step="0.01" class="form-control" required  style="display: inline; width: 60%;" id="W" placeholder="" value="0.25">
+	     	</div>
+		</div>
+	    <div class="form-group">
+	      <div class="col-md-8 col-md-offset-2">
+	        <button type="submit" class="btn btn-primary" style="width: 200px;">Расчет</button>	        
+	        <button type="reset" id="reset1" class="btn btn-default">Сброс</button>
+	      </div>
+	    </div>
+	  </fieldset>
+	</form>
+	</div>
+</body>
+</html>
