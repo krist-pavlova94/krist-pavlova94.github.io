@@ -276,5 +276,135 @@
 	</form>
 	</div>
 	</div>
+	<div class="h">&nbsp;</div>
+	<script type='text/javascript' src="libs/jquery.min.js"></script>
+    <script type='text/javascript' src="libs/bootstrap-slider.min.js"></script>
+    <script>
+        var nms = ['R','A','Z','I','S','T','P'];
+
+    	//получение данных из одного поля формы
+		function parseInp(name)
+    	{
+			return [parseInt($('#'+name+'l').val()), parseInt($('#'+name+'r').val()), name];
+    	}
+
+    	//получение данных с полей о расходах
+		function getInputs()
+    	{
+    		var inp = [];
+    		for(var i=0; i<nms.length; i++)
+    		{
+    			inp.push(parseInp(nms[i]));
+    		}
+    		return inp;
+    	}
+
+    	//установка начальных значений в форме со слайдером
+		function initSliders()
+    	{
+    		var inp = getInputs();
+    		for(var i=0; i<inp.length; i++)
+    		{
+    			$("#"+inp[i][2]+"2").slider({step: 1, min: inp[i][0], max: inp[i][1], value: (inp[i][0]+inp[i][1])/2 });
+    		}
+    	}
+
+    	//обновление данных слайдера
+		function refreshSliders()
+    	{
+    		var inp = getInputs();
+    		for(var i=0; i<inp.length; i++)
+    		{
+    			$("#"+inp[i][2]+"2").slider('destroy');
+    			$("#"+inp[i][2]+"2").slider({step: 1, min: inp[i][0], max: inp[i][1], value: (inp[i][0]+inp[i][1])/2 });
+    		}
+    	}
+
+    	//получение данных с первой формы
+		function getInputs2()
+    	{
+    		var inp = [];
+    	
+    		inp.push(parseInt($('#count').val()));
+    		inp.push(parseInt($('input[name=B]:checked','#form1').val()));
+    		inp.push(parseInt($('input[name=tax]:checked','#form1').val()));
+    		inp.push(parseInt($('#D').val()));
+			inp.push(parseInt($('#U').val()));
+			inp.push(parseFloat($('#W').val()));
+
+    		return inp;
+    	}
+
+		//вывод данных перед корректировкой
+		function setRes(x)
+    	{
+    		if(x.length)
+    		{
+				$('#res1').val(x[0]);
+    			$('#res2').val(x[1]);
+    			$('#res3').val(x[2]);
+    		}
+    		else
+    		{
+    			$('#res1').val('');
+    			$('#res2').val('');
+    			$('#res3').val('');
+    		}
+    	}
+
+    	//подсчет результатов
+		function calculate()
+    	{
+			var inp = getInputs();
+    		var inp2 = getInputs2();
+    		
+    		//обнуляем результаты после корректировки
+    		//setRes2([]);
+
+    		var Z = 0;
+    		var P = (inp[nms.length-1][0]+inp[nms.length-1][1])/2; //средняя стоимость закупки
+
+    		// общие расходы
+    		for(var i=0; i<nms.length-1; i++)
+    		{
+    			Z += (inp[i][0]+inp[i][1])/2;
+    		}
+
+    		var C = Z*inp2[5]/inp2[0] + P; //себестоимость
+    		var USN = 0;
+
+			if(inp2[2] == 1) //6%
+    		{
+    			USN = inp2[3]*0.06 - inp2[4];
+    		}
+    		else //15%
+    		{
+    			USN = (inp2[3]-Z)*0.15;
+    		}
+
+    		//показ общих расходов, себестоимости и усн
+    		setRes([Math.round(Z),Math.round(C),Math.round(USN)]);
+
+    		refreshSliders();
+    	}
+
+    	//при загрузке формы установка начальных значений на форме слайдера
+    	$(document).ready(function(){
+    		initSliders();
+    	});
+
+    	//нажатие кнопки Расчет
+		$('#form1').submit(function(){
+    		calculate();
+    		return false;
+    	});
+
+    	//сброс значений формы и результатов
+    	$('#reset1').click(function(){
+    		setRes([]);
+			setRes2([]);
+    	});
+
+    </script>
 </body>
 </html>
