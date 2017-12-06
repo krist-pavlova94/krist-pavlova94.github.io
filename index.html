@@ -279,17 +279,17 @@
 	<div class="h">&nbsp;</div>
 	<script type='text/javascript' src="libs/jquery.min.js"></script>
     <script type='text/javascript' src="libs/bootstrap-slider.min.js"></script>
-    <script>
+<script>
         var nms = ['R','A','Z','I','S','T','P'];
 
-    	//получение данных из одного поля формы
-		function parseInp(name)
+        //получение данных из одного поля формы 
+    	function parseInp(name)
     	{
 			return [parseInt($('#'+name+'l').val()), parseInt($('#'+name+'r').val()), name];
     	}
 
-    	//получение данных с полей о расходах
-		function getInputs()
+    	//получение данных полей о расходах
+    	function getInputs()
     	{
     		var inp = [];
     		for(var i=0; i<nms.length; i++)
@@ -299,8 +299,8 @@
     		return inp;
     	}
 
-    	//установка начальных значений в форме со слайдером
-		function initSliders()
+    	// установка начальных значений в форме со скроллами
+    	function initSliders()
     	{
     		var inp = getInputs();
     		for(var i=0; i<inp.length; i++)
@@ -309,8 +309,8 @@
     		}
     	}
 
-    	//обновление данных слайдера
-		function refreshSliders()
+    	//обновление данных в полях со скроллами
+    	function refreshSliders()
     	{
     		var inp = getInputs();
     		for(var i=0; i<inp.length; i++)
@@ -321,7 +321,7 @@
     	}
 
     	//получение данных с первой формы
-		function getInputs2()
+    	function getInputs2()
     	{
     		var inp = [];
     	
@@ -335,7 +335,39 @@
     		return inp;
     	}
 
-		//вывод данных перед корректировкой
+    	//получение данных с формы со скроллами
+    	function getInputsCorrect()
+    	{
+    		var inp = [];
+
+    		for(var i=0; i<nms.length; i++)
+    		{
+    			inp.push(parseInt($('#'+nms[i]+'2').val()));
+    		}
+
+    		return inp;
+    	}
+
+    	//вывод данных после корректировки
+    	function setRes2(x)
+    	{
+    		if(x.length)
+    		{
+				$('#res4').val(x[0]);
+    			$('#res5').val(x[1]);
+    			$('#res6').val(x[2]);
+    			$('#info').text(x[3]);
+    		}
+    		else //очистить поля
+    		{
+    			$('#res4').val('');
+    			$('#res5').val('');
+    			$('#res6').val('');
+    			$('#info').text('');
+    		}
+    	}
+
+    	//вывод данных 
 		function setRes(x)
     	{
     		if(x.length)
@@ -344,7 +376,7 @@
     			$('#res2').val(x[1]);
     			$('#res3').val(x[2]);
     		}
-    		else
+    		else //очистить поля
     		{
     			$('#res1').val('');
     			$('#res2').val('');
@@ -353,13 +385,13 @@
     	}
 
     	//подсчет результатов
-		function calculate()
+    	function calculate()
     	{
 			var inp = getInputs();
     		var inp2 = getInputs2();
     		
     		//обнуляем результаты после корректировки
-    		//setRes2([]);
+    		setRes2([]);
 
     		var Z = 0;
     		var P = (inp[nms.length-1][0]+inp[nms.length-1][1])/2; //средняя стоимость закупки
