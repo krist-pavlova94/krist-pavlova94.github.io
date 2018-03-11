@@ -272,13 +272,33 @@
 	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res6" placeholder="" value=""> 
 	     	</div>
 		</div>
+		  <div class="form-group">
+		<label  class="col-md-3 control-label">Цена</label>
+		<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res7" placeholder="" value="">
+		</div>
+		</div>
 	  </fieldset>
 	</form>
 	</div>
 	</div>
+	<div class="row">
+        <div class="col-md-10 col-md-offset-4" style="margin-top: 40px;">
+            <div class="form-group">
+                <button id="btn_dg" class="btn btn-primary" >Построить диаграмму</button>
+                <button id="btn_dg_reset" class="btn btn-default">Очистить диаграмму</button>
+                <a href="index2.html" class="btn btn-success">Перейти к нечеткой логике</a>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="chart" style="display: none;">
+                <canvas id="barChart" style="height:230px"></canvas>
+            </div>
+        </div>
+    </div>
 	<div class="h">&nbsp;</div>
 	<script type='text/javascript' src="libs/jquery.min.js"></script>
-    <script type='text/javascript' src="libs/bootstrap-slider.min.js"></script>
+    	<script type='text/javascript' src="libs/bootstrap-slider.min.js"></script>
+	<script src="libs/chartjs/Chart.min.js"></script>
 <script>
         var nms = ['R','A','Z','I','S','T','P'];
 
