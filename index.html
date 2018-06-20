@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="libs/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="libs/bootstrap-slider.min.css">
-	<title>Расчет расходов интернет-магазина</title>
+	<title>Информационная система определения расходов интернет-магазина</title>
 	<style>
 		.h {
 			height: 600px;
@@ -16,9 +16,9 @@
  <div class="col-xs-5 col-xs-offset-1">
 	<form class="form-horizontal" id="form1">
 	  <fieldset>
-	    <legend>Расходы</legend>
+	    <legend>Затраты</legend>
 	    <div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
+	     	<label class="col-md-3 control-label">
 	     		Реклама
 	     	</label>
 	     	<div class="col-md-8">
@@ -26,7 +26,7 @@
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
+	     	<label class="col-md-3 control-label">
 	     		Аренда
 	     	</label>
 	     	<div class="col-md-8">
@@ -34,7 +34,7 @@
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
+	     	<label class="col-md-3 control-label">
 	     		Зарплата
 	     	</label>
 	     	<div class="col-md-8">
@@ -42,7 +42,7 @@
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
+	     	<label class="col-md-3 control-label">
 	     		Интернет
 	     	</label>
 	     	<div class="col-md-8">
@@ -50,7 +50,7 @@
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
+	     	<label class="col-md-3 control-label">
 	     		Сайт
 	     	</label>
 	     	<div class="col-md-8">
@@ -58,23 +58,23 @@
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
+	     	<label class="col-md-3 control-label">
 	     		Телефон
 	     	</label>
 	     	<div class="col-md-8">
-	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 30%;" id="Tl" placeholder="" value="1">&nbsp;—&nbsp;<input type="number" required min="1" class="form-control" style="display: inline; width: 30%;" id="Tr" placeholder="" value="500"> руб
+	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 30%;" id="Tl" placeholder="" value="100">&nbsp;—&nbsp;<input type="number" required min="1" class="form-control" style="display: inline; width: 30%;" id="Tr" placeholder="" value="500"> руб
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     	<label class="col-md-3 control-label" style="padding-top: 0;">
 	     		Количество товаров
 	     	</label>
 	     	<div class="col-md-8">
-	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 30%;" id="count" placeholder="" value="100">
+	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 30%;" id="count" placeholder="" value="100"> шт
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     	<label class="col-md-3 control-label" style="padding-top: 0;">
 	     		Стоимость закупки
 	     	</label>
 	     	<div class="col-md-8">
@@ -86,13 +86,13 @@
 	      <div class="col-md-9">
 	        <div class="radio">
 	          <label>
-	            <input type="radio" name="B" id="optionsRadios1" value="1" checked>
+	            <input type="radio" name="B" id="optionsRadios1" value="1">
 	            небольшая
 	          </label>
 	        </div>
 	        <div class="radio">
 	          <label>
-	            <input type="radio" name="B" id="optionsRadios2" value="2">
+	            <input type="radio" name="B" id="optionsRadios2" value="2" checked>
 	            средняя
 	          </label>
 	        </div>	        
@@ -127,28 +127,14 @@
 	        </div>	       
 	      </div>
 	    </div>
-	    <div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
-	     		Доходы
-	     	</label>
-	     	<div class="col-md-8">
-	     		<input type="number" min="1" class="form-control" required style="display: inline; width: 60%;" id="D" placeholder="" value="75000"> руб
-	     	</div>
-		</div>
+	   
+		
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
-	     		Сумма уплаченных страховых взносов
-	     	</label>
-	     	<div class="col-md-8">
-	     		<input type="number" min="1" class="form-control" required  style="display: inline; width: 60%;" id="U" placeholder="" value="1000"> руб
-	     	</div>
-		</div>
-		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
 	     		Удельный вес номенклатурной группы или модели
 	     	</label>
 	     	<div class="col-md-8">
-	     		<input type="number" step="0.01" class="form-control" required  style="display: inline; width: 60%;" id="W" placeholder="" value="0.25">
+	     		<input type="number" min="0.01" max = "1" step="0.01" class="form-control" required  style="display: inline; width: 60%;" id="W" placeholder="" value="0.5"> доли
 	     	</div>
 		</div>
 	    <div class="form-group">
@@ -160,20 +146,21 @@
 	  </fieldset>
 	</form>
 	</div>
+
 	<div class="col-xs-5">
 	<form class="form-horizontal" id="form2">
 	  <fieldset>
 		<legend>Корректировка</legend>
 		 <div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
 	     		Реклама
 	     	</label>
 	     	<div class="col-md-8">
 	     		<input type="text" class="form-control" style="display: inline; width: 80%;" id="R2" data-slider-min="10" data-slider-max="1000" data-slider-step="1" data-slider-value="250"> &nbsp;руб
 	     	</div>
 		</div>
-		  <div class="form-group" style="margin-top: 22px;">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+		<div class="form-group" style="margin-top: 22px;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
 	     		Аренда
 	     	</label>
 	     	<div class="col-md-8">
@@ -181,7 +168,7 @@
 	     	</div>
 		</div>
 		<div class="form-group" style="margin-top: 22px;">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
 	     		Зарплата
 	     	</label>
 	     	<div class="col-md-8">
@@ -189,7 +176,7 @@
 	     	</div>
 		</div>
 		<div class="form-group" style="margin-top: 22px;">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
 	     		Интернет
 	     	</label>
 	     	<div class="col-md-8">
@@ -197,7 +184,7 @@
 	     	</div>
 		</div>
 		<div class="form-group" style="margin-top: 22px;">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
 	     		Сайт
 	     	</label>
 	     	<div class="col-md-8">
@@ -205,7 +192,7 @@
 	     	</div>
 		</div>
 		<div class="form-group" style="margin-top: 22px;">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
 	     		Телефон
 	     	</label>
 	     	<div class="col-md-8">
@@ -213,7 +200,7 @@
 	     	</div>
 		</div>
 		<div class="form-group" style="margin-top: 22px;">
-	     	<label for="inputPassword" class="col-md-3 control-label" style="padding-top: 0;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
 	     		Стоимость закупки
 	     	</label>
 	     	<div class="col-md-8">
@@ -228,54 +215,56 @@
 	    </div><br><br>
 	    <legend>Результат</legend>
 	    <div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
-	     		Общие расходы
+	     	<label  class="col-md-3 control-label">
+	     		Общие затраты
 	     	</label>
-	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res1" placeholder="" value=""> руб
+	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res1" placeholder="" value="" disabled = "disabled"> руб
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
-	     		Себестоимость
+	     	<label  class="col-md-3 control-label">
+	     		Себестоимость единицы товара
 	     	</label>
-	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res2" placeholder="" value=""> руб
+	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res2" placeholder="" value="" disabled = "disabled"> руб
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
-	     		УСН
+	     	<label  class="col-md-3 control-label">
+	     		УСН на единицу товара
 	     	</label>
-	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res3" placeholder="" value=""> 
+	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res3" placeholder="" value="" disabled = "disabled"> руб
 	     	</div>
 		</div><br><br>
 		<legend>Результат после корректировки</legend>
 	    <div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
-	     		Общие расходы
+	     	<label  class="col-md-3 control-label">
+	     		Общие затраты
 	     	</label>
 	     	<div class="col-md-8">
 	     		<p id="info" ></p>	
-	     		<input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res4" placeholder="" value=""> руб
+	     		<input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res4" placeholder="" value="" disabled = "disabled"> руб
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
-	     		Себестоимость
+	     	<label  class="col-md-3 control-label">
+	     		Себестоимость единицы товара
 	     	</label>
-	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res5" placeholder="" value=""> руб
+	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res5" placeholder="" value="" disabled = "disabled"> руб
 	     	</div>
 		</div>
 		<div class="form-group">
-	     	<label for="inputPassword" class="col-md-3 control-label">
-	     		УСН
+	     	<label  class="col-md-3 control-label">
+	     		УСН на единицу товара
 	     	</label>
-	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res6" placeholder="" value=""> 
+	     	<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res6" placeholder="" value="" disabled = "disabled"> руб
 	     	</div>
 		</div>
-		  <div class="form-group">
-		<label  class="col-md-3 control-label">Цена</label>
-		<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res7" placeholder="" value="">
-		</div>
+		<div class="form-group">
+			<label  class="col-md-3 control-label">
+				Цена единицы товара с учетом УСН
+			</label>
+			<div class="col-md-8"><input type="number" min="1" class="form-control" style="display: inline; width: 60%;" id="res7" placeholder="" value="" disabled = "disabled"> руб
+			</div>
 		</div>
 	  </fieldset>
 	</form>
@@ -296,13 +285,17 @@
         </div>
     </div>
 	<div class="h">&nbsp;</div>
-	<script type='text/javascript' src="libs/jquery.min.js"></script>
-    	<script type='text/javascript' src="libs/bootstrap-slider.min.js"></script>
-	<script src="libs/chartjs/Chart.min.js"></script>
-<script>
+	<script src="libs/jquery.min.js"></script>
+    <script src="libs/bootstrap-slider.min.js"></script>
+    <script src="libs/chartjs/Chart.min.js"></script>
+    <script>
+        $(function () {
+
         var nms = ['R','A','Z','I','S','T','P'];
 
-        //получение данных из одного поля формы 
+        localStorage.setItem('fdata',JSON.stringify(getInputs()));
+
+		//получение данных из одного поля формы 
     	function parseInp(name)
     	{
 			return [parseInt($('#'+name+'l').val()), parseInt($('#'+name+'r').val()), name];
@@ -312,8 +305,7 @@
     	function getInputs()
     	{
     		var inp = [];
-    		for(var i=0; i<nms.length; i++)
-    		{
+    		for(var i=0; i<nms.length; i++) {
     			inp.push(parseInp(nms[i]));
     		}
     		return inp;
@@ -348,8 +340,6 @@
     		inp.push(parseInt($('#count').val()));
     		inp.push(parseInt($('input[name=B]:checked','#form1').val()));
     		inp.push(parseInt($('input[name=tax]:checked','#form1').val()));
-    		inp.push(parseInt($('#D').val()));
-			inp.push(parseInt($('#U').val()));
 			inp.push(parseFloat($('#W').val()));
 
     		return inp;
@@ -360,8 +350,7 @@
     	{
     		var inp = [];
 
-    		for(var i=0; i<nms.length; i++)
-    		{
+    		for(var i=0; i<nms.length; i++) {
     			inp.push(parseInt($('#'+nms[i]+'2').val()));
     		}
 
@@ -371,18 +360,17 @@
     	//вывод данных после корректировки
     	function setRes2(x)
     	{
-    		if(x.length)
-    		{
+    		if(x.length) {
 				$('#res4').val(x[0]);
     			$('#res5').val(x[1]);
     			$('#res6').val(x[2]);
-    			$('#info').text(x[3]);
-    		}
-    		else //очистить поля
-    		{
+                $('#res7').val(x[3]);
+    			$('#info').text(x[4]);
+    		} else { //очистить поля
     			$('#res4').val('');
     			$('#res5').val('');
     			$('#res6').val('');
+                $('#res7').val('');
     			$('#info').text('');
     		}
     	}
@@ -390,14 +378,11 @@
     	//вывод данных 
 		function setRes(x)
     	{
-    		if(x.length)
-    		{
+    		if(x.length) {
 				$('#res1').val(x[0]);
     			$('#res2').val(x[1]);
     			$('#res3').val(x[2]);
-    		}
-    		else //очистить поля
-    		{
+    		} else {//очистить поля
     			$('#res1').val('');
     			$('#res2').val('');
     			$('#res3').val('');
@@ -414,33 +399,54 @@
     		setRes2([]);
 
     		var Z = 0;
-    		var P = (inp[nms.length-1][0]+inp[nms.length-1][1])/2; //средняя стоимость закупки
+			var Z2 = 0;
+    		var P = (inp[nms.length-1][1] - inp[nms.length-1][0])/2; //средняя стоимость закупки
 
     		// общие расходы
-    		for(var i=0; i<nms.length-1; i++)
-    		{
+    		for(var i=0; i<nms.length-1; i++) {
     			Z += (inp[i][0]+inp[i][1])/2;
+				
     		}
-
-    		var C = Z*inp2[5]/inp2[0] + P; //себестоимость
-    		var USN = 0;
-
-			if(inp2[2] == 1) //6%
-    		{
-    			USN = inp2[3]*0.06 - inp2[4];
-    		}
-    		else //15%
-    		{
-    			USN = (inp2[3]-Z)*0.15;
+			Z2 = Z-P;
+			
+    		var C = (((Z-P)*inp2[3]/inp2[0]) + (P/inp2[0])); //
+    		
+			
+			//расчет прибыли
+			var Pr = 0;
+			if (inp2[1] == 1) {  
+			Pr = C*0.1;
+			}
+			
+			if (inp2[1] == 2) {  
+			Pr = C*0.2;
+			}
+			
+			if (inp2[1] == 3) {
+			Pr = C*0.5;
+			}
+			
+			else if (inp2[1] == 4) {
+			Pr = C*0.7;
+			}
+			
+			var USN = 0;
+			if(inp2[2] == 1) { //6%
+    			USN = ((C + Pr)*0.06)/0.94; 
+    		} 
+			
+			else {//15%
+			
+    			USN = Pr*0.15; //
     		}
 
     		//показ общих расходов, себестоимости и усн
-    		setRes([Math.round(Z),Math.round(C),Math.round(USN)]);
+    		setRes([Math.round(Z2),Math.round(C),Math.round(USN)]);
 
     		refreshSliders();
     	}
 
-    	//определение категории значения С на промежутке AB
+    	//определение категории значения С 
     	function getCategory(a,b,c)
     	{
     		var h = (b-a)/3;
@@ -466,23 +472,22 @@
     	//определение категории расходов
     	function getInfo(inpc)
     	{
-    		//['R','A','Z','I','S','T','P'];
+
     		var inp = getInputs();
-    		var rules = [];
-    		for(var i=0; i<nms.length; i++)
-    		{
-    			rules.push(getCategory(inp[i][0],inp[i][1],inpc[i]));
+    		var cats = [];
+    		for(var i=0; i<nms.length; i++) {
+    			cats.push(getCategory(inp[i][0],inp[i][1],inpc[i]));
     		}
 
-    		//проверка на условия какой уровень расходов (правила)
-    		if(rules[0]==1 && rules[1]==1 && rules[2]==1 && rules[3]==1 && rules[4]==1 && rules[5]==1)
+    		//проверка правил
+    		if(cats[0]==1 && cats[1]==1 && cats[2]==1 && cats[3]==1 && cats[4]==1 && cats[5]==1)
     			return resToRus(1);
-    		if(rules[0]==2 && rules[1]==2 && rules[2]==2 && rules[3]==2 && rules[4]==2 && rules[5]==2)
+    		if(cats[0]==2 && cats[1]==2 && cats[2]==2 && cats[3]==2 && cats[4]==2 && cats[5]==2)
     			return resToRus(2);
-    		if(rules[0]==3 && rules[1]==3 && rules[2]==3 && rules[3]==3 && rules[4]==3 && rules[5]==3)
+    		if(cats[0]==3 && cats[1]==3 && cats[2]==3 && cats[3]==3 && cats[4]==3 && cats[5]==3)
     			return resToRus(3);
 
-    		return resToRus(Math.round((rules[0]+rules[1]+rules[2])/3));
+    		return resToRus(Math.round((cats[0]+cats[1]+cats[2])/3));
     	}
 
     	//корректировка результатов
@@ -492,28 +497,51 @@
     		var inp2 = getInputs2();
     		
     		var Z = 0;
-    		var P = inp[6]; //стоимость закупки
+			var Z2 = 0;
+    		var P = inp[6]; //стоимость закупки 
 
     		// общие расходы
     		for(var i=0; i<nms.length; i++)
     		{
     			Z += inp[i];
     		}
-
-    		var C = Z*inp2[5]/inp2[0] + P; //себестоимость
-    		var USN = 0;
-
-			if(inp2[2] == 1) //6%
-    		{
-    			USN = inp2[3]*0.06 - inp2[4];
-    		}
+			Z2 = Z - P;
+			
+    		var C = (((Z-P)*inp2[3]/inp2[0]) + (P/inp2[0])); // себестоимость
+    		
+			//расчет прибыли
+			var Pr = 0;
+			if (inp2[1] == 1) { 
+			Pr = C*0.1;
+			}
+			
+			if (inp2[1] == 2) {  
+			Pr = C*0.2;
+			}
+			
+			if (inp2[1] == 3) {  
+			Pr = C*0.5;
+			}
+			
+			else if (inp2[1] == 4) { 
+			Pr = C*0.7;
+			}
+			
+			var USN = 0;
+			if(inp2[2] == 1)			//6%
+			{
+			USN = ((C + Pr)*0.06)/0.94;
+			}
+			
     		else //15%
     		{
-    			USN = (inp2[3]-Z)*0.15;
+    			USN = Pr*0.15;
     		}
-
+			
+			var Price = Pr + USN + C;
+			
     		//показ общих расходов, себестоимости и усн
-    		setRes2([Math.round(Z),Math.round(C),Math.round(USN),getInfo(inp)]);
+    		setRes2([Math.round(Z2),Math.round(C),Math.round(USN),Math.round(Price), getInfo(inp)]);
     	}
 
     	//при загрузке формы установка начальных значений на форме со скроллами
@@ -523,6 +551,7 @@
 
     	//нажатие кнопки Расчет
     	$('#form1').submit(function(){
+            localStorage.setItem('fdata',JSON.stringify(getInputs()));
     		calculate();
     		return false;
     	});
@@ -545,7 +574,9 @@
 			refreshSliders();
 			return false;
     	});
-//прячем диаграмму при клике на кнопку
+
+
+    	//прячем диаграмму при клике на кнопку
         $('#btn_dg_reset').click(function() {
             $('.chart').hide();
         });
