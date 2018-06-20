@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap-slider.min.css">
+	<title>Алгоритм Мамдани</title>
+	<style>
+		.h {
+			height: 600px;
+		}
+        .modebar{
+            display: none !important;
+        }
+	</style>
+</head>
+<body>
+<div class="row" style="margin-top: 40px;">
+    <div class="col-xs-11">
+        <a class="btn btn-default btn-xs pull-right" href="index.html">Вернуться на главную страницу</a>
+    </div>
+	<div class="col-xs-8 col-xs-offset-1">
+<form class="form-horizontal">
+	  <fieldset>
+		<legend>Расходы</legend>
+		 <div class="form-group">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
+	     		Реклама
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="text" class="form-control" style="display: inline; width: 80%;" id="R2" data-slider-min="10" data-slider-max="1000" data-slider-step="1" data-slider-value="250"> &nbsp;руб
+	     	</div>
+		</div>
+		<div class="form-group" style="margin-top: 22px;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
+	     		Аренда
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="text" class="form-control" style="display: inline; width: 80%;" id="A2" data-slider-min="10" data-slider-max="1000" data-slider-step="1" data-slider-value="250"> &nbsp;руб
+	     	</div>
+		</div>
+		<div class="form-group" style="margin-top: 22px;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
+	     		Зарплата
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="text" class="form-control" style="display: inline; width: 80%;" id="Z2" data-slider-min="10" data-slider-max="1000" data-slider-step="1" data-slider-value="250"> &nbsp;руб
+	     	</div>
+		</div>
+		<div class="form-group" style="margin-top: 22px;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
+	     		Интернет
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="text" class="form-control" style="display: inline; width: 80%;" id="I2" data-slider-min="10" data-slider-max="1000" data-slider-step="1" data-slider-value="250"> &nbsp;руб
+	     	</div>
+		</div>
+		<div class="form-group" style="margin-top: 22px;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
+	     		Сайт
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="text" class="form-control" style="display: inline; width: 80%;" id="S2" data-slider-min="10" data-slider-max="1000" data-slider-step="1" data-slider-value="250"> &nbsp;руб
+	     	</div>
+		</div>
+		<div class="form-group" style="margin-top: 22px;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
+	     		Телефон
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="text" class="form-control" style="display: inline; width: 80%;" id="T2" data-slider-min="10" data-slider-max="1000" data-slider-step="1" data-slider-value="250"> &nbsp;руб
+	     	</div>
+		</div>
+		<div class="form-group" style="margin-top: 22px;">
+	     	<label  class="col-md-3 control-label" style="padding-top: 0;">
+	     		Стоимость закупки
+	     	</label>
+	     	<div class="col-md-8">
+	     		<input type="text" class="form-control" style="display: inline; width: 80%;" id="P2" data-slider-min="10" data-slider-max="1000" data-slider-step="1" data-slider-value="250"> &nbsp;руб
+	     	</div>
+		</div>
+          <div class="form-group" style="margin-top: 22px;">
+              <label  class="col-md-3 control-label" style="padding-top: 0;">
+                  Показывать подробности решения
+              </label>
+              <div class="col-md-8">
+                  <input type="checkbox" checked id="full" class="form-control" style="width: 16px;">
+              </div>
+          </div>
+	    <div class="form-group">
+	      <div class="col-md-8 col-md-offset-4">
+	        <button id="solution" class="btn btn-primary" style="width: 200px;">Решение</button>
+	        <button id="reset2" class="btn btn-default">Очистить</button>
+	      </div>
+	    </div>
+      </fieldset>
+</form> <br><br>
+        <p id="full_info"></p>
+        <div id="res" style="display: none;">
+	    <legend>Результат дефаззификации</legend>
+	    <div class="form-group">
+	     	<label  class="col-md-3 control-label">
+	     	</label>
+	     	<div class="col-md-8"><input type="text" class="form-control" style="display: inline; width: 60%;" id="res1" placeholder="" value="" disabled = "disabled">
+	     	</div>
+		</div>
+		<br><br><br>
+		<legend>Графики функций принадлежности</legend>
+        <div class="col-md-12 col-md-offset-2">
+            <div id="diagramm0" style="width:600px;height:460px;">
+            </div>
+            <div id="diagramm1" style="width:600px;height:460px;">
+            </div>
+            <div id="diagramm2" style="width:600px;height:460px;">
+            </div>
+            <div id="diagramm3" style="width:600px;height:460px;">
+            </div>
+            <div id="diagramm4" style="width:600px;height:460px;">
+            </div>
+            <div id="diagramm5" style="width:600px;height:460px;">
+            </div>
+            <div id="diagramm6" style="width:600px;height:460px;">
+            </div>
+            <div id="diagramm7" style="width:600px;height:460px;">
+            </div>
+        </div>
+        <br>
+        <legend>Оценка влияния на выходную переменную</legend>
+
+        <div class="form-group">
+	     	<label  class="col-md-3 control-label" style="padding-top: 8px;">
+	     		Входная переменная
+	     	</label>
+	     	<div class="col-md-5">
+	     		<select id="mark" class="form-control">
+                    <option value="0">Реклама</option>
+                    <option value="1">Аренда</option>
+                    <option value="2">Зарплата</option>
+                    <option value="3">Интернет</option>
+                    <option value="4">Сайт</option>
+                    <option value="5">Телефон</option>
+                    <option value="6">Стоимость закупки</option>
+                </select>
+	     	</div>
+		</div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-4">
+                <div class="form-group" style="margin-top: 12px;">
+                    <button id="btn_plot" class="btn btn-primary" style="width: 200px;">Построить график</button>
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div id="line-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+
+        </div>
+	</div>
+	</div>
+	<div class="h">&nbsp;</div>
+	<script src="libs/jquery.min.js"></script>
+    <script src="libs/bootstrap-slider.min.js"></script>
+    <script src="libs/canvasjs.min.js"></script>
+    <script src="libs/plotly-latest.min.js"></script>
+    <script>
+        $(function () {
+            var nms = ['R', 'A', 'Z', 'I', 'S', 'T', 'P'];
+            var labels = ['Реклама', 'Аренда', 'Зарплата', 'Интернет', 'Сайт', 'Телефон', 'Стоимость закупки'];
+            var is_full = false; // выводить ли подробности решения
+            var inf = $('#full_info'); // вывод подробностей решения
+            var mm_inp = []; //диапазон со скроллов
+            var inp = []; //данные со скроллов
+            var r = [];//расходы (мин, макс, шаг)
+            var lmh = [ 
+                // L
+                [
+                    [1, 2, 3, 4, 5, 6],
+                    [1, 1, 0.75, 0.5, 0.25, 0]
+                ],
+                // M
+                [
+                    [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                    [0, 0.25, 0.5, 0.75, 1, 1, 0.75, 0.5, 0.25, 0]
+                ],
+                // H
+                [
+                    [7, 8, 9, 10, 11, 12, 13],
+                    [0, 0.25, 0.5, 0.75, 1, 1, 1]
+                ]
+            ];
+            var numbers_lmh = []; // 0, 0, 0.25, 0.5, ...
+            var letters_lmh = []; // LLMMMHHLMH
+            var df; // результат дефаззификации
+            var term; //итоговое терм-множество
+            var min_active; // min-активизация
+
+            initSliders();
+
+            // установка начальных значений в форме со скроллами
+            function initSliders() {
+                var inp = JSON.parse(localStorage.getItem('fdata'));
+
+                if (!inp) {
+                    inp = [
+                        [4000, 16000, "R"],
+                        [2500, 15000, "A"],
+                        [26040, 78120, "Z"],
+                        [450, 800, "I"],
+                        [250, 1550, "S"],
+                        [1, 500, "T"],
+                        [4000, 16000, "P"]
+                    ];
+                }
+
+                mm_inp = [];
+
+                for (var i = 0; i < inp.length; i++) {
+                    $("#" + inp[i][2] + "2").slider({
+                        step: parseInt((inp[i][1] - inp[i][0]) / 12),
+                        min: inp[i][0],
+                        max: inp[i][1],
+                        value: inp[i][0] + 6 * (inp[i][1] - inp[i][0]) / 12
+                    });
+                    mm_inp.push([inp[i][0], inp[i][1]]);
+                }
+            }
+
+            //обнуляем переменные
+            function initVars() {
+                inf.html('');
+                numbers_lmh = [];
+                letters_lmh = [];
+                r = [];
+                mm_inp = [];
+                inp = [];
+            }
+
+            //находит шаг для конкретного типа расхода
+            function hForInp(k) {
+                return parseInt((mm_inp[k][1] - mm_inp[k][0]) / 12);
+            }
+
+            //нажатие кнопки Решение
+            $('#solution').click(function () {
+                $('#res').show();
+                $('#line-chart').html('');
+                is_full = $('#full').prop('checked');
+                inf.html('');
+                if (is_full) {
+                    inf.show();
+                } else {
+                    inf.hide();
+                }
+                initVars();
+                initSliders();
+                calculate();
+
+                return false;
+            });
+
+            function getTestInputs() {
+                return [6000, 7705, 52080, 595, 898, 247, 11000];
+            }
+            //получение данных с формы со скроллами
+            function getInputs() {
+                //return getTestInputs();
+                var inp = [];
+                for (var i = 0; i < nms.length; i++) {
+                    inp.push(parseInt($('#' + nms[i] + '2').val()));
+                }
+                return inp;
+            }
+
+            //подсчет результатов
+            function calculate() {
+                inp = getInputs();
+                r = calculateR();
+                calculateLMH();
+                checkRules();
+                minActivate();
+                if (is_full) {
+                    inf.append('<h4>Подробности решения</h4>');
+                    inf.append('<h5>Значения расходов</h5>');
+                    for (var i = 0; i < inp.length; i++) {
+                        inf.append(labels[i] + ': ' + inp[i] + ' руб [' + mm_inp[i][0] + ',' + mm_inp[i][1] + '], шаг ' + (hForInp(i)) + '<br>');
+                    }
+                    inf.append('Расходы: ' + r[2] + ' руб [' + r[0] + ',' + r[1] + '], шаг ' + (r[3]) + '<br>');
+                    inf.append('Степени принадлежности и терм-множества входных переменных: <br>' + numbers_lmh + '<br>' + letters_lmh + '<br>');
+                    inf.append('Итоговое терм-множество: ' + term + '<br>');
+                    inf.append('Итоговая степень принадлежности выходной переменной: ' + min_active + '<br>');
+                }
+                getDf();
+                $('#res1').val(df);
+                createDiagramms();
+            }
+
+            //находим расходы (мин, макс, значение, шаг)
+            function calculateR() {
+                var min = 0;
+                var max = 0;
+                var sum = 0;
+                for (var i = 0; i < mm_inp.length; i++) {
+                    min += mm_inp[i][0];
+                    max += mm_inp[i][1];
+                    sum += inp[i];
+                }
+
+                return [min, max, sum, parseInt((max - min) / 12)];
+            }
+
+            //номер терм-множества в символ терм-множества
+            function kToLMH(k) {
+                if (k == 0) return 'L';
+                if (k == 1) return 'M';
+                if (k == 2) return 'H';
+
+                return '?';
+            }
+
+            // находим  LMHHMLLMHH и  0.5, 0.25, 0, 0, 0.25 ...
+            function calculateLMH() {
+                for (var i = 0; i < inp.length; i++) {
+                    var ind = 1 + parseInt((inp[i] - mm_inp[i][0]) / hForInp(i));
+
+                    var lt = -1;
+                    var mu = 1;
+
+                    for (var k = 0; k < 3; k++) {
+                        for (var j = 0; j < lmh[k][0].length; j++) {
+                            if (lmh[k][0][j] == ind && lmh[k][1][j] > 0 && lmh[k][1][j] <= mu) {
+                                mu = lmh[k][1][j];
+                                lt = k;
+                            }
+                        }
+                    }
+
+                    if (lt != -1) {
+                        letters_lmh.push(kToLMH(lt));
+                        numbers_lmh.push(mu);
+                    } else {
+                        alert('Неизвестная ошибка в алгоритме');
+                        return 1;
+                    }
+                }
+            }
+
+            //проверка правил
+            function checkRules() {
+                var rules = [["L", "L", "L", "L", "L", "L", "L"],
+                    ["M", "M", "M", "M", "M", "M", "M"],
+                    ["H", "H", "H", "H", "H", "H", "H"],
+                    ["L", "M", "M", "M", "M", "M", "M"],
+                    ["L", "L", "M", "M", "M", "M", "M"],
+                    ["L", "L", "L", "M", "M", "M", "M"],
+                    ["L", "L", "L", "L", "M", "M", "M"],
+                    ["L", "L", "L", "L", "L", "M", "M"],
+                    ["L", "L", "L", "L", "L", "L", "M"],
+                    ["L", "H", "H", "H", "H", "H", "H"],
+                    ["L", "L", "H", "H", "H", "H", "H"],
+                    ["L", "L", "L", "H", "H", "H", "H"],
+                    ["L", "L", "L", "L", "H", "H", "H"],
+                    ["L", "L", "L", "L", "L", "H", "H"],
+                    ["L", "L", "L", "L", "L", "L", "H"],
+                    ["M", "L", "L", "L", "L", "L", "L"],
+                    ["M", "M", "L", "L", "L", "L", "L"],
+                    ["M", "M", "M", "L", "L", "L", "L"],
+                    ["M", "M", "M", "M", "L", "L", "L"],
+                    ["M", "M", "M", "M", "M", "L", "L"],
+                    ["M", "M", "M", "M", "M", "M", "L"],
+                    ["M", "H", "H", "H", "H", "H", "H"],
+                    ["M", "M", "H", "H", "H", "H", "H"],
+                    ["M", "M", "M", "H", "H", "H", "H"],
+                    ["M", "M", "M", "M", "H", "H", "H"],
+                    ["M", "M", "M", "M", "M", "H", "H"],
+                    ["M", "M", "M", "M", "M", "M", "H"],
+                    ["H", "L", "L", "L", "L", "L", "L"],
+                    ["H", "H", "L", "L", "L", "L", "L"],
+                    ["H", "H", "H", "L", "L", "L", "L"],
+                    ["H", "H", "H", "H", "L", "L", "L"],
+                    ["H", "H", "H", "H", "H", "L", "L"],
+                    ["H", "H", "H", "H", "H", "H", "L"],
+                    ["H", "M", "M", "M", "M", "M", "M"],
+                    ["H", "H", "M", "M", "M", "M", "M"],
+                    ["H", "H", "H", "M", "M", "M", "M"],
+                    ["H", "H", "H", "H", "M", "M", "M"],
+                    ["H", "H", "H", "H", "H", "M", "M"],
+                    ["H", "H", "H", "H", "H", "H", "M"],
+                    ["L", "M", "L", "M", "L", "M", "L"],
+                    ["L", "H", "L", "H", "L", "H", "L"],
+                    ["M", "L", "M", "L", "M", "L", "M"],
+                    ["M", "H", "M", "H", "M", "H", "M"],
+                    ["H", "L", "H", "L", "H", "L", "H"],
+                    ["H", "M", "H", "M", "H", "M", "H"]
+                ];
+
+                var results = ["L",
+                    "M",
+                    "H",
+                    "M",
+                    "M",
+                    "M",
+                    "M",
+                    "L",
+                    "L",
+                    "H",
+                    "H",
+                    "H",
+                    "M",
+                    "M",
+                    "L",
+                    "L",
+                    "L",
+                    "L",
+                    "M",
+                    "M",
+                    "M",
+                    "H",
+                    "H",
+                    "H",
+                    "H",
+                    "M",
+                    "M",
+                    "L",
+                    "L",
+                    "M",
+                    "M",
+                    "H",
+                    "H",
+                    "M",
+                    "M",
+                    "H",
+                    "H",
+                    "H",
+                    "H",
+                    "M",
+                    "M",
+                    "M",
+                    "M",
+                    "H",
+                    "H"];
+
+                term = '';
+                for (var i = 0; i < rules.length; i++) {
+                    var res = true;
+                    for (var j = 0; j < letters_lmh.length; j++) {
+                        if (letters_lmh[j] !== rules[i][j]) {
+                            res = false;
+                            break;
+                        }
+                    }
+
+                    if (res) {
+                        term = results[i];
+                        break;
+                    }
+                }
+
+                if (term == '')
+                    term = "M";
+            }
+
+            function minActivate() {
+                min_active = 1;
+                for (var i = 0; i < numbers_lmh.length; i++)
+                    if (numbers_lmh[i] < min_active)
+                        min_active = numbers_lmh[i];
+            }
+
+            function getMinMaxForTerm(term) {
+                var i = 0;
+                if (term == "M") {
+                    i = 1;
+                } else if (term == "H") {
+                    i = 2;
+                }
+
+                return [lmh[i][0][0], lmh[i][0][lmh[i][0].length - 1]];
+            }
+
+            function getDf() {
+                var period = getMinMaxForTerm(term);
+
+                var min = r[0] + (period[0] - 1) * r[3];
+                var max = r[0] + (period[1] - 1) * r[3];
+
+                if (is_full) {
+                    inf.append('Границы вычисления интеграла: от ' + min + ' до ' + max + '<br>');
+                }
+
+                df = (max + min) / 2;
+            }
+
+            // кнопка Очистить
+            $('#reset2').click(function () {
+                $('#res').hide();
+                inf.html('');
+                return false;
+            });
+
+            // построение графика Оценка влияния
+            $('#btn_plot').click(function () {
+
+                var index = $('#mark').val();
+                var data = getDataForLinePlot(index);
+                var chart = new CanvasJS.Chart("line-chart", {
+                    data: [
+                        {
+                            type: "line",
+                            dataPoints: data
+                        }
+                    ]
+                });
+                chart.render();
+            });
+
+            //получение данных для графика Оценка влияния в зависимости от select
+            function getDataForLinePlot(index) {
+                var data = [];
+
+                for (var i = mm_inp[index][0]; i < mm_inp[index][1]; i += hForInp(index)) {
+                    data.push({x: i, y: getRByInp(index, i)});
+                }
+
+                return data;
+            }
+
+            // общие расходы при данном значении одного вида расходов
+            function getRByInp(index, val) {
+                var sum = 0;
+                for (var i = 0; i < mm_inp.length; i++) {
+                    if (i != index)
+                        sum += inp[i];
+                }
+                sum += val;
+                return sum;
+            }
+
+            //создание диаграмм
+            function createDiagramms() {
+                for (var i = 0; i < inp.length; i++) {
+                    createDiagramm(i);
+                }
+                createDiagrammR();
+            }
+
+            // размеры диаграммы
+            var width = 600, height = 450;
+
+            //создание одной диаграммы
+            function createDiagramm(k) {
+                var trace1 = {
+                    x: [1],
+                    y: [9],
+                    text: [''],
+                    mode: 'text'
+                };
+
+                var layout = {
+                    title: labels[k],
+                    xaxis: {
+                        range: [mm_inp[k][0], mm_inp[k][1]],
+                        zeroline: true,
+                        fixedrange: true
+                    },
+                    yaxis: {
+                        range: [0, 1.1],
+                        showgrid: true,
+                        fixedrange: true
+                    },
+                    width: width,
+                    height: height,
+                    shapes: [
+                        {
+                            type: 'path',
+                            path: getFillPolygonPath(k),
+                            fillcolor: 'rgba(255, 140, 184, 0.5)',
+                            line: {
+                                color: 'rgb(255, 140, 184)'
+                            }
+                        },
+                        {
+                            type: 'path',
+                            path: getPolygonPath(k),
+                            line: {
+                                color: 'rgb(255, 140, 184)'
+                            }
+                        },
+                        {
+                            type: 'line',
+                            x0: inp[k],
+                            y0: 0,
+                            x1: inp[k],
+                            y1: 1,
+                            line: {
+                                color: 'rgb(50, 171, 96)',
+                                width: 3
+                            }
+                        }
+                    ]
+                };
+
+                var data = [];
+                Plotly.newPlot('diagramm' + k, data, layout);
+            }
+
+            function getDh(y)
+            {
+                if(y==0) return 0;
+                if(y==0.25) return 1;
+                if(y==0.5) return 2;
+                if(y==0.75) return 3;
+                if(y==1) return 4;
+            }
+
+            function lByMu(m)
+            {
+                if (m==1)
+                    return 2;
+
+                for(var i=0; i<lmh[0][1].length; i++)
+                {
+                    if(lmh[0][1][i] == m)
+                        return lmh[0][0][i];
+                }
+            }
+
+            //создание закрашенного многоугольника
+            function getFillPolygonPath(k)
+            {
+                var s = 'M ';
+
+                if(letters_lmh[k] == 'L') {
+                    var h= hForInp(k);
+                    var ind = lByMu(numbers_lmh[k]);
+                    var left_x = mm_inp[k][0]+h*(ind-1);
+                    var right_x = mm_inp[k][0]+h*5;
+                    s += '0,0 L 0,'+numbers_lmh[k]+' L'+left_x+','+numbers_lmh[k];
+                    s += ' L '+right_x+',0 ';
+
+                } else if(letters_lmh[k] == 'M') {
+
+                    var ind_start = lmh[1][0][0]-1;
+                    //console.log('ind_start '+ind_start+' '+ hForInp(k));
+                    var h= hForInp(k);
+                    var left_x = mm_inp[k][0]+h*ind_start;
+                    var dh = getDh(numbers_lmh[k]);
+                    //console.log('dh ',dh);
+                    var left_x2 = left_x+h*dh;
+                    var right_x = left_x2+h*(9-2*dh);
+                    var right_x2 = right_x+h*dh;
+                    s += left_x +',0 L '+left_x2+','+numbers_lmh[k];
+                    s += ' L '+right_x+','+numbers_lmh[k];
+                    s += ' L '+right_x2+', 0 ';
+
+                } else if(letters_lmh[k] == 'H') {
+                    var ind_start = lmh[2][0][0]-1;
+                    //console.log('ind_start '+ind_start+' '+ hForInp(k));
+                    var h= hForInp(k);
+                    var left_x = mm_inp[k][0]+h*ind_start;
+                    var dh = getDh(numbers_lmh[k]);
+                    //console.log('dh ',dh);
+                    var left_x2 = left_x+h*dh;
+                    var right_x = mm_inp[k][1];
+                    s += left_x +',0 L '+left_x2+','+numbers_lmh[k];
+                    s += ' L '+right_x+','+numbers_lmh[k];
+                    s += ' L '+right_x+', 0 ';
+                }
+
+                s += ' Z';
+
+                //console.log(s);
+                return s;
+            }
+
+            //создание незакрашенного многоугольника
+            function getPolygonPath(k)
+            {
+                var s = 'M ';
+                if(letters_lmh[k] == 'L') {
+                    var h= hForInp(k);
+                    var ind = 2;
+                    var left_x = mm_inp[k][0]+h*(ind-1);
+                    var right_x = mm_inp[k][0]+h*5;
+                    s += '0,0 L 0,1 L'+left_x+',1';
+                    s += ' L '+right_x+',0 ';
+                } else if(letters_lmh[k] == 'M') {
+                    var ind_start = lmh[1][0][0]-1;
+                    //console.log('ind_start '+ind_start+' '+ hForInp(k));
+                    var h= hForInp(k);
+                    var left_x = mm_inp[k][0]+h*ind_start;
+                    var left_x2 = left_x+h*4;
+                    var right_x = left_x2+h;
+                    var right_x2 = right_x+h*4;
+                    s += left_x +',0 L '+left_x2+',1';
+                    s += ' L '+right_x+',1';
+                    s += ' L '+right_x2+', 0 ';
+                } else if(letters_lmh[k] == 'H') {
+                    var ind_start = lmh[2][0][0]-1;
+                    //console.log('ind_start '+ind_start+' '+ hForInp(k));
+                    var h= hForInp(k);
+                    var left_x = mm_inp[k][0]+h*ind_start;
+                    var dh = getDh(numbers_lmh[k]);
+                    //console.log('dh ',dh);
+                    var left_x2 = left_x+h*4;
+                    var right_x = mm_inp[k][1];
+                    s += left_x +',0 L '+left_x2+',1';
+                    s += ' L '+right_x+',1';
+                    s += ' L '+right_x+', 0 ';
+                }
+                s += ' Z';
+                //console.log(s);
+                return s;
+            }
+
+            //создание диаграммы расходов
+            function createDiagrammR()
+            {
+                var trace1 = {
+                    x: [1],
+                    y: [9],
+                    text: [''],
+                    mode: 'text'
+                };
+
+                var layout = {
+                    title: 'Расходы',
+                    xaxis: {
+                        range: [r[0], r[1]],
+                        zeroline: true,
+                        fixedrange: true
+                    },
+                    yaxis: {
+                        range: [0, 1.1],
+                        showgrid: true,
+                        fixedrange: true
+                    },
+                    width: width,
+                    height: height,
+                    shapes: [
+                        {
+                            type: 'path',
+                            path: getFillPolygonPathR(),
+                            fillcolor: 'rgba(255, 140, 184, 0.5)',
+                            line: {
+                                color: 'rgb(255, 140, 184)'
+                            }
+                        },
+                        {
+                            type: 'path',
+                            path: getPolygonPathR(),
+                            line: {
+                                color: 'rgb(255, 140, 184)'
+                            }
+                        },
+                        {
+                            type: 'line',
+                            x0: df,
+                            y0: 0,
+                            x1: df,
+                            y1: 1,
+                            line: {
+                                color: 'rgb(50, 171, 96)',
+                                width: 3
+                            }
+                        }
+                    ]
+                };
+
+                var data = [];
+                Plotly.newPlot('diagramm7', data, layout)
+            }
+
+            //создание закрашенного многоугольника для расходов
+            function getFillPolygonPathR()
+            {
+                var s = 'M ';
+
+                if(term == 'L') {
+                    var h= r[3];
+                    var ind = lByMu(min_active);
+                    var left_x = r[0]+h*(ind-1);
+                    var right_x = r[0]+h*5;
+                    s += '0,0 L 0,'+min_active+' L'+left_x+','+min_active;
+                    s += ' L '+right_x+',0 ';
+
+                } else if(term == 'M') {
+
+                    var ind_start = lmh[1][0][0]-1;
+                    //console.log('ind_start '+ind_start+' '+ r[3]);
+                    var h= r[3];
+                    var left_x = r[0]+h*ind_start;
+                    var dh = getDh(min_active);
+                    //console.log('dh ',dh);
+                    var left_x2 = left_x+h*dh;
+                    var right_x = left_x2+h*(9-2*dh);
+                    var right_x2 = right_x+h*dh;
+                    s += left_x +',0 L '+left_x2+','+min_active;
+                    s += ' L '+right_x+','+min_active;
+                    s += ' L '+right_x2+', 0 ';
+
+                } else if(term == 'H') {
+                    var ind_start = lmh[2][0][0]-1;
+                    //console.log('ind_start '+ind_start+' '+ r[3]);
+                    var h= r[3];
+                    var left_x = r[0]+h*ind_start;
+                    var dh = getDh(min_active);
+                    //console.log('dh ',dh);
+                    var left_x2 = left_x+h*dh;
+                    var right_x = r[1];
+                    s += left_x +',0 L '+left_x2+','+min_active;
+                    s += ' L '+right_x+','+min_active;
+                    s += ' L '+right_x+', 0 ';
+                }
+
+                s += ' Z';
+
+                //console.log(s);
+                return s;
+            }
+
+            //создание незакрашенного многоугольника для расходов
+            function getPolygonPathR()
+            {
+                var s = 'M ';
+                if(term == 'L') {
+                    var h= r[3];
+                    var ind = 2;
+                    var left_x = r[0]+h*(ind-1);
+                    var right_x = r[0]+h*5;
+                    s += '0,0 L 0,1 L'+left_x+',1';
+                    s += ' L '+right_x+',0 ';
+                } else if(term == 'M') {
+                    var ind_start = lmh[1][0][0]-1;
+                    //console.log('ind_start '+ind_start+' '+ r[3]);
+                    var h= r[3];
+                    var left_x = r[0]+h*ind_start;
+                    var left_x2 = left_x+h*4;
+                    var right_x = left_x2+h;
+                    var right_x2 = right_x+h*4;
+                    s += left_x +',0 L '+left_x2+',1';
+                    s += ' L '+right_x+',1';
+                    s += ' L '+right_x2+', 0 ';
+                } else if(term == 'H') {
+                    var ind_start = lmh[2][0][0]-1;
+                    //console.log('ind_start '+ind_start+' '+ r[3]);
+                    var h= r[3];
+                    var left_x = r[0]+h*ind_start;
+                    var dh = getDh(min_active);
+                    //console.log('dh ',dh);
+                    var left_x2 = left_x+h*4;
+                    var right_x = r[1];
+                    s += left_x +',0 L '+left_x2+',1';
+                    s += ' L '+right_x+',1';
+                    s += ' L '+right_x+', 0 ';
+                }
+                s += ' Z';
+                //console.log(s);
+                return s;
+            }
+        });
+    </script>
+</body>
+</html>
